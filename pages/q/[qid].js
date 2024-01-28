@@ -94,7 +94,7 @@ function Answer({ answer, wi, ri, bi, oi, maxPage, sortOrder }) {
 
 export async function getStaticPaths() {
 
-  const res = await fetch(`${process.env.DB_HOST}/items/questions?fields=id&filter[status][_eq]=published`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questions?fields=id&filter[status][_eq]=published`)
   const questions = await res.json()
   
   const paths = questions.data.map(question => {
@@ -112,10 +112,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const question = await fetch(`${process.env.DB_HOST}/items/questions/${params.qid}?fields=*,answers.*.*&filter[status][_eq]=published`);
+  const question = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questions/${params.qid}?fields=*,answers.*.*&filter[status][_eq]=published`);
   const q = await question.json()
 
-  const meta = await fetch(`${process.env.DB_HOST}/items/questions?fields=id&filter[status][_eq]=published&meta=filter_count`);
+  const meta = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questions?fields=id&filter[status][_eq]=published&meta=filter_count`);
   const m = await meta.json()
 
   const c = m.meta.filter_count

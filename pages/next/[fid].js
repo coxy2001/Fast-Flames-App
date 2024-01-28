@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Directus } from '@directus/sdk';
 import uuid from 'react-uuid';
 
-const directus = new Directus(process.env.DB_HOST, { auth: { staticToken: process.env.DB_TOKEN } });
+const directus = new Directus(process.env.NEXT_PUBLIC_DB_HOST, { auth: { staticToken: process.env.DB_TOKEN } });
 
 async function createNewQuestionnaireReponse(ff_uuid, questionsAnswers, id) {
 
@@ -105,7 +105,7 @@ function FormInputField({ question }) {
 
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.DB_HOST}/items/questionnaire_forms?fields=id&filter[status][_eq]=published`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questionnaire_forms?fields=id&filter[status][_eq]=published`)
   const forms = await res.json()
 
   const paths = forms.data.map(form => {
@@ -124,7 +124,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const question = await fetch(`${process.env.DB_HOST}/items/questionnaire_forms/${params.fid}?fields=*.questionnaire_questions_id.*&filter[status][_eq]=published`);
+  const question = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questionnaire_forms/${params.fid}?fields=*.questionnaire_questions_id.*&filter[status][_eq]=published`);
   const q = await question.json()
 
   return {

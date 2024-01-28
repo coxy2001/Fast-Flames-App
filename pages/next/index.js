@@ -54,7 +54,7 @@ function Question({ question }) {
 }
 
 export async function getStaticProps() {
-    const question = await fetch(`${process.env.DB_HOST}/items/questionnaire_forms?fields=*.*.*&filter[status][_eq]=published`);
+    const question = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/items/questionnaire_forms?fields=*.*.*&filter[status][_eq]=published`);
     const q = await question.json()
 
     return {
