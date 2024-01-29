@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Directus } from '@directus/sdk';
 import uuid from 'react-uuid';
 
-const directus = new Directus(process.env.NEXT_PUBLIC_DB_HOST, { auth: { staticToken: process.env.DB_TOKEN } });
+const directus = new Directus(process.env.NEXT_PUBLIC_DB_HOST, { auth: { staticToken: process.env.NEXT_PUBLIC_DB_TOKEN } });
 
 async function createNewQuestionnaireReponse(ff_uuid, questionsAnswers, id) {
 

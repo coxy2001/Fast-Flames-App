@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Directus } from '@directus/sdk';
 
-const directus = new Directus(process.env.NEXT_PUBLIC_DB_HOST, { auth: { staticToken: process.env.DB_TOKEN } });
+const directus = new Directus(process.env.NEXT_PUBLIC_DB_HOST, { auth: { staticToken: process.env.NEXT_PUBLIC_DB_TOKEN } });
 
 async function updateProspect(data) {
 
